@@ -28,4 +28,8 @@ export class MedicamentoService {
       .put<any>(url, data);
   }
 
+  public filterNombre(url: string,nombre:string){
+    return this.http.get(url + `/${nombre}`)
+  }
+
 }

@@ -14,8 +14,8 @@ export class VentaService {
     return this.http.get(url);
   }
 
-  public sale(url:any, data:any){
-    return this.http.post<any>(url, data)
+  public sale(url:any,id:number, data:any){
+    return this.http.post<any>(url + `/${id}`, data)
   }
 
 }

@@ -52,14 +52,15 @@ export class VentaMedicamentoComponent {
       );
 
       let ventaData = {
-        medicamento: { id: this.dataVentaMedicamento.id },
+        idMedicamento: this.dataVentaMedicamento.id,
+        nombreMedicamento: this.dataVentaMedicamento.nombre,
         valorUnitario: this.dataVentaMedicamento.valorUnitario,
         fecha: null,
         cantidad: newVenta.cantidad,
         valorTotal: this.precioTotalMedicamento
       }
 
-      this.ventaService.sale('api/venta/crear', ventaData)
+      this.ventaService.sale('api/venta/crear', this.dataVentaMedicamento.id, ventaData)
       .subscribe({
         next: (venta) => {
         },
