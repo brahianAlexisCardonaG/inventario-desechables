@@ -9,7 +9,7 @@ import { MedicamentoService } from 'src/app/core/services/medicamento.service';
   templateUrl: './medicamento-edit.component.html',
   styleUrls: ['./medicamento-edit.component.scss']
 })
-export class MedicamentoEditComponent implements OnInit{
+export class MedicamentoEditComponent implements OnInit {
 
   formEditMedicamento!: FormGroup;
   mensajeError = null;
@@ -18,21 +18,21 @@ export class MedicamentoEditComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<MedicamentoEditComponent>,
-    private medicamentoService:MedicamentoService,
-    private toasterService:ToastrService,
+    private medicamentoService: MedicamentoService,
+    private toasterService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ){
+  ) {
     this.dataMedicamento = data.data
   }
 
   ngOnInit(): void {
     this.formEditMedicamento = this.formBuilder.group({
-      nombre:[this.dataMedicamento.nombre,[Validators.required]],
-      laboratorioFabrica:[this.dataMedicamento.laboratorioFabrica,[Validators.required]],
-      fechaFabricacion:[this.dataMedicamento.fechaFabricacion,[Validators.required]],
-      fechaVencimiento:[this.dataMedicamento.fechaVencimiento,[Validators.required]],
-      cantidadStock:[this.dataMedicamento.cantidadStock,[Validators.required]],
-      valorUnitario:[this.dataMedicamento.valorUnitario,[Validators.required]],
+      nombre: [this.dataMedicamento.nombre, [Validators.required]],
+      laboratorioFabrica: [this.dataMedicamento.laboratorioFabrica, [Validators.required]],
+      fechaFabricacion: [this.dataMedicamento.fechaFabricacion, [Validators.required]],
+      fechaVencimiento: [this.dataMedicamento.fechaVencimiento, [Validators.required]],
+      cantidadStock: [this.dataMedicamento.cantidadStock, [Validators.required, , Validators.pattern(/^[1-9]\d*$/)]],
+      valorUnitario: [this.dataMedicamento.valorUnitario, [Validators.required]],
     });
   }
 

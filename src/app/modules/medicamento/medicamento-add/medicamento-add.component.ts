@@ -28,7 +28,7 @@ export class MedicamentoAddComponent implements OnInit {
       laboratorioFabrica: ['', [Validators.required]],
       fechaFabricacion: ['', [Validators.required]],
       fechaVencimiento: ['', [Validators.required]],
-      cantidadStock: ['', [Validators.required]],
+      cantidadStock: ['', [Validators.required, , Validators.pattern(/^[1-9]\d*$/)]],
       valorUnitario: ['', [Validators.required]],
     });
   }

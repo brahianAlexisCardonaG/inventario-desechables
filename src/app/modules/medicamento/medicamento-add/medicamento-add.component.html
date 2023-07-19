@@ -32,9 +32,15 @@
           <input id="cantidadStock" type="text" formControlName="cantidadStock" class="p-inputtext">
           <div class="p-invalid">
             <ng-container
-              *ngIf="formAddMedicamento.controls['cantidadStock'].invalid && formAddMedicamento.controls['cantidadStock'].touched">
-              <span class="text-red-500 scalein animation-duration-500 text-sm relative flex z-0">Este campo es
-                requerido</span>
+              *ngIf="formAddMedicamento.get('cantidadStock')!.hasError('required') && formAddMedicamento.controls['cantidadStock'].touched">
+              <span class="text-red-500 scalein animation-duration-500 text-sm relative flex z-0">
+                Este campo es requerido
+              </span>
+            </ng-container>
+            <ng-container *ngIf="formAddMedicamento.get('cantidadStock')!.hasError('pattern')">
+              <span class="text-red-500 scalein animation-duration-500 text-sm relative flex z-0">
+                Este campo debe ser un número positivo
+              </span>
             </ng-container>
           </div>
         </div>
