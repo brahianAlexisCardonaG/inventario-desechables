@@ -1,14 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+//import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VentaService {
 
+  //module: string = 'venta/';
+
   constructor(
     private http: HttpClient,
   ) { }
+
+  //CON ENVIRONMENTS
+  // public get(url: string) {
+  //   return this.http.get(`${environment.apiUrl}/${this.module}`+url);
+  // }
 
   public get(url: string) {
     return this.http.get(url);
