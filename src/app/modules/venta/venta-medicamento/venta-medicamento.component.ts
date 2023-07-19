@@ -61,19 +61,19 @@ export class VentaMedicamentoComponent {
       }
 
       this.ventaService.sale('api/venta/crear', this.dataVentaMedicamento.id, ventaData)
-      .subscribe({
-        next: (venta) => {
-        },
-        error: (error) => {
-          try {
-            for (let field of error) {
-              this.toasterService.error(field.message, 'Error');
+        .subscribe({
+          next: (venta) => {
+          },
+          error: (error) => {
+            try {
+              for (let field of error) {
+                this.toasterService.error(field.message, 'Error');
+              }
+            } catch (e) {
+              this.mensajeError = error.message;
             }
-          } catch (e) {
-            this.mensajeError = error.message;
-          }
-        },
-      });
+          },
+        });
       this.dialogRef.close();
       this.toasterService.success('Venta creada exitosamente');
 

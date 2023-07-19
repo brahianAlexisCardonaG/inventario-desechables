@@ -19,8 +19,8 @@ export class MedicamentoService {
       .post<any>(url, data);
   }
 
-  public delete(id: any) {
-    return this.http.delete("api/medicamento/eliminar" + `/${id}`)
+  public delete(url:string ,id: any) {
+    return this.http.delete(url + `/${id}`)
   }
 
   public update(url: string, data: any) {

@@ -32,7 +32,7 @@ export class MedicamentoComponent implements OnInit {
 
       if (data != null && data != '' && data) {
         this.filterByNombre(data);
-      }else {
+      } else {
         this.listMedicamentos();
       }
     })

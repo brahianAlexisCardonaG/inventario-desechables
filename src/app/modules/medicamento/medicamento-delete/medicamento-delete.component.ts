@@ -10,17 +10,17 @@ import { MedicamentoService } from 'src/app/core/services/medicamento.service';
 })
 export class MedicamentoDeleteComponent implements OnInit {
 
-  dataMedicamento:any;
-  mensajeError:any;
+  dataMedicamento: any;
+  mensajeError: any;
 
   constructor(
     public dialogRef: MatDialogRef<MedicamentoDeleteComponent>,
-    private medicamentoService:MedicamentoService,
-    private toasterService:ToastrService,
+    private medicamentoService: MedicamentoService,
+    private toasterService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ) {
-      this.dataMedicamento = data.data
-    }
+  ) {
+    this.dataMedicamento = data.data
+  }
 
   ngOnInit(): void {
 
@@ -29,7 +29,7 @@ export class MedicamentoDeleteComponent implements OnInit {
   onFormSubmit() {
     if (navigator.onLine) {
       this.mensajeError = null;
-      this.medicamentoService.delete(this.dataMedicamento.id).subscribe({
+      this.medicamentoService.delete("api/medicamento/eliminar", this.dataMedicamento.id).subscribe({
         next: (medicamento) => {
           this.dialogRef.close(medicamento);
           this.toasterService.success('medicamento eliminado exitosamente')

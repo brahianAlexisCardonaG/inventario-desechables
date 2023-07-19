@@ -14,8 +14,12 @@ export class VentaService {
     return this.http.get(url);
   }
 
-  public sale(url:any,id:number, data:any){
+  public sale(url: any, id: number, data: any) {
     return this.http.post<any>(url + `/${id}`, data)
+  }
+
+  public filterFecha(url: string, fecha: string) {
+    return this.http.get(url + `/${fecha}`)
   }
 
 }

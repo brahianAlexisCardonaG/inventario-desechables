@@ -1,3 +1,9 @@
+<div class="m-2 mt-4">
+  <form [formGroup]="formVenta" novalidate autocomplete="off" class="p-card-body">
+    <label for="fecha">Fecha</label>
+    <input id="fecha" type="date" formControlName="fecha" class="p-inputtext ml-1">
+  </form>
+</div>
 <p-table [value]="sale" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5">
   <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
