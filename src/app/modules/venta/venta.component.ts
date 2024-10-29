@@ -11,6 +11,7 @@ export class VentaComponent implements OnInit {
 
   sale: any;
   formVenta!: FormGroup;
+  totalVentasFecha:number=0;
 
   constructor(
     private ventaService: VentaService,
@@ -23,29 +24,33 @@ export class VentaComponent implements OnInit {
       fecha: [''],
     })
 
-    this.listVentas();
+  }
 
-    this.formVenta.get('fecha')?.valueChanges.subscribe((data) => {
-
-      if (data != null && data != '' && data) {
-        this.filterByFecha(data);
-      } else {
-        this.listVentas();
+  filtrar() {
+    const dataFilter = this.formVenta.getRawValue();
+    for (const key in dataFilter) {
+      if (!dataFilter[key]) {
+        delete dataFilter[key];
+      }
+    }
+    this.ventaService.get('api/venta/listar', dataFilter).subscribe((data) => {
+      this.sale = data;
+      if(data){
+        this.sumarPrecios(data);
       }
     })
-
   }
 
-  filterByFecha(data: string) {
-    this.ventaService.filterFecha('api/venta/listarFecha', data).subscribe((data) => {
-      this.sale = data;
-    })
+  sumarPrecios(data:any) {
+    let total = 0;
+    for (let i = 0; i < data.length; i++) {
+        total += data[i].valorTotal;
+    }
+    this.totalVentasFecha=total;
+}
+
+  limpiar(){
+    this.formVenta.reset();
   }
 
-  listVentas() {
-    this.ventaService.get('api/venta/listar')
-      .subscribe((res) => {
-        this.sale = res;
-      })
-  }
 }

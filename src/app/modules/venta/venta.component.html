@@ -3,6 +3,17 @@
     <label for="fecha">Fecha</label>
     <input id="fecha" type="date" formControlName="fecha" class="p-inputtext ml-1">
   </form>
+  <div class="flex justify-content-end">
+    <p-button class="flex-initial flex align-items-center justify-content-center" label="Limpiar"
+      styleClass="p-button-rounded p-button-sm surface-600" pTooltip="Limpiar" matTooltipPosition="above"
+      (click)="limpiar()">
+      <mat-icon>cleaning_services</mat-icon>
+    </p-button>
+    <p-button class="flex-initial flex align-items-center justify-content-center ml-2" label="Filtrar"
+      styleClass="p-button-rounded p-button-sm" pTooltip="Filtrar" matTooltipPosition="above" (click)="filtrar()">
+      <mat-icon>filter_alt</mat-icon>
+    </p-button>
+  </div>
 </div>
 <p-table [value]="sale" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5">
   <ng-template pTemplate="caption">
@@ -12,7 +23,7 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th class="text-center">Medicamento</th>
+      <th class="text-center">Producto</th>
       <th class="text-center">Fecha Venta</th>
       <th class="text-center">Valor Unitario</th>
       <th class="text-center">Cantidad</th>
@@ -21,7 +32,7 @@
   </ng-template>
   <ng-template class="align-items-center" pTemplate="body" let-sale>
     <tr>
-      <td class="text-center">{{sale.nombreMedicamento}}</td>
+      <td class="text-center">{{sale.nombreProducto}}</td>
       <td class="text-center">{{sale.fecha}}</td>
       <td class="text-center">{{sale.valorUnitario}} </td>
       <td class="text-center">{{sale.cantidad}}</td>
@@ -30,7 +41,22 @@
   </ng-template>
   <ng-template pTemplate="summary">
     <div class="flex align-items-center justify-content-between">
-      Total: {{sale ? sale.length : 0 }} Ventas.
+      Número de ventas: {{sale ? sale.length : 0 }} Ventas.
     </div>
+    <div *ngIf="totalVentasFecha > 0" class="flex align-items-center justify-content-end">
+      Total de ventas: {{totalVentasFecha > 0 ? totalVentasFecha : 0 }} pesos.
+    </div>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td [attr.colspan]="8">
+        <div class="m-2 p-2 mt-2 mb-2 ui-messages ui-messages-info ui-corner-all text-center p-3">
+          <span class="ui-messages-icon pi pi-info-circle pr-1 text-xs"></span>
+          <span class="ui-messages-detail font-size-15 mt-1">
+            No se encontraron registros que coincidan con los criterios búsqueda ingresados.
+          </span>
+        </div>
+      </td>
+    </tr>
   </ng-template>
 </p-table>

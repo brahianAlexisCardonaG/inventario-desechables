@@ -52,17 +52,24 @@ export class VentaMedicamentoComponent {
       );
 
       let ventaData = {
-        idMedicamento: this.dataVentaMedicamento.id,
-        nombreMedicamento: this.dataVentaMedicamento.nombre,
+        idProducto: this.dataVentaMedicamento.id,
+        nombreProducto: this.dataVentaMedicamento.nombre,
         valorUnitario: this.dataVentaMedicamento.valorUnitario,
         fecha: null,
         cantidad: newVenta.cantidad,
         valorTotal: this.precioTotalMedicamento
       }
 
-      this.ventaService.sale('api/venta/crear', this.dataVentaMedicamento.id, ventaData)
+      let ventas:any[] = [];
+      ventas.push(ventaData);
+
+      this.ventaService.sale('api/venta/crear', ventas)
         .subscribe({
           next: (venta) => {
+            console.log(venta)
+            console.log("entra")
+            this.dialogRef.close();
+            this.toasterService.success('Venta creada exitosamente');
           },
           error: (error) => {
             try {
@@ -74,9 +81,6 @@ export class VentaMedicamentoComponent {
             }
           },
         });
-      this.dialogRef.close();
-      this.toasterService.success('Venta creada exitosamente');
-
     } else {
       this.toasterService.error(
         'Por favor, revisa tu conexión a internet',

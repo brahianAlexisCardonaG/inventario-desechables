@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 //import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -18,16 +19,13 @@ export class VentaService {
   //   return this.http.get(`${environment.apiUrl}/${this.module}`+url);
   // }
 
-  public get(url: string) {
-    return this.http.get(url);
+  public get(url: string, values:any) {
+    const params = new HttpParams({ fromObject: values });
+    return this.http.get(url, {params})
   }
 
-  public sale(url: any, id: number, data: any) {
-    return this.http.post<any>(url + `/${id}`, data)
-  }
-
-  public filterFecha(url: string, fecha: string) {
-    return this.http.get(url + `/${fecha}`)
+  sale(url: string, ventas: any[]): Observable<any> {
+    return this.http.post(url, ventas, { responseType: 'text' });
   }
 
 }

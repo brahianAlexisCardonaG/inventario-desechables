@@ -4,17 +4,18 @@ import { ToastrService } from 'ngx-toastr';
 import { MedicamentoService } from 'src/app/core/services/medicamento.service';
 
 @Component({
-  selector: 'app-medicamento-delete',
-  templateUrl: './medicamento-delete.component.html',
-  styleUrls: ['./medicamento-delete.component.scss']
+  selector: 'app-producto-delete',
+  templateUrl: './producto-delete.component.html',
+  styleUrls: ['./producto-delete.component.scss']
 })
-export class MedicamentoDeleteComponent implements OnInit {
+export class ProductoDeleteComponent {
 
+  
   dataMedicamento: any;
   mensajeError: any;
 
   constructor(
-    public dialogRef: MatDialogRef<MedicamentoDeleteComponent>,
+    public dialogRef: MatDialogRef<ProductoDeleteComponent>,
     private medicamentoService: MedicamentoService,
     private toasterService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -29,10 +30,10 @@ export class MedicamentoDeleteComponent implements OnInit {
   onFormSubmit() {
     if (navigator.onLine) {
       this.mensajeError = null;
-      this.medicamentoService.delete("api/medicamento/eliminar", this.dataMedicamento.id).subscribe({
+      this.medicamentoService.delete("api/inventario/eliminar", this.dataMedicamento.id).subscribe({
         next: (medicamento) => {
           this.dialogRef.close(medicamento);
-          this.toasterService.success('medicamento eliminado exitosamente')
+          this.toasterService.success('producto eliminado exitosamente')
         },
         error: (error) => {
           try {

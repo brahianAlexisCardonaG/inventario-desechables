@@ -1,1 +1,20 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items">
+    <ng-template pTemplate="end">
+        <div class="user-accordion">
+            <div class="accordion-header" (click)="toggleAccordion()">
+                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                            shape="circle" />
+                <span>{{ nombreUser }}</span>
+                <i class="pi" [ngClass]="{'pi-chevron-down': !isAccordionOpen, 'pi-chevron-up': isAccordionOpen}"></i>
+            </div>
+            <div class="accordion-content" *ngIf="isAccordionOpen">
+                <ul>
+                    <li (click)="cerrarSesion()">
+                        <i class="pi pi-power-off mr-1 text-red-500" style="font-size: 1rem"></i>
+                        Cerrar sesión
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ng-template>
+</p-menubar>

@@ -1,0 +1,51 @@
+<div class="img">
+    <div class="container ">
+        <div class="backbox">
+            <div class="signupMsg" [class.visibility]="!isLoginFormVisible">
+                <div class="textcontent">
+                    <p class="title">Bienvenid@</p>
+                    <p>Por favor haz clic en el botón<br> LOGIN para iniciar sesión.</p>
+                    <button (click)="toggleLoginForm()">LOGIN</button>
+                </div>
+            </div>
+
+
+            <div class="loginMsg" [class.visibility]="isLoginFormVisible">
+                <div class="textcontent">
+                    <p class="title">Hola, Deseas ingresar<br>
+                        al sistema?</p>
+                    <p>Por favor, completa el formulario<br>
+                        de la izquierda. Ingresa tu usuario<br>
+                        y contraseña.</p>
+                    <button (click)="toggleLoginForm()">VOLVER</button>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="frontbox" [class.moving]="!isLoginFormVisible">
+            <div class="login" [class.hide]="isLoginFormVisible">
+                <h2 class="pt-1">LOGIN</h2>
+                <form [formGroup]="loginForm" class="pt-3">
+                    <div class="inputbox">
+                        <input type="text" name="nickname" placeholder="  USER"
+                         formControlName="nickname">
+                        <input type="password" name="password" placeholder="  PASSWORD"
+                         formControlName="password">
+                    </div>
+                </form>
+
+                <p class="pt-1">No tienes usuario? <br>
+                    Pidele al ADMINISTRADOR que <br>
+                    que te cree un usuario.</p>
+                <button (click)="clickLoggin()">INGRESAR</button>
+            </div>
+            <div class="signup" [class.hide]="!isLoginFormVisible">
+                <img src="./../../../assets/img/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>

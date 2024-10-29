@@ -5,11 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import { MedicamentoService } from 'src/app/core/services/medicamento.service';
 
 @Component({
-  selector: 'app-medicamento-edit',
-  templateUrl: './medicamento-edit.component.html',
-  styleUrls: ['./medicamento-edit.component.scss']
+  selector: 'app-producto-edit',
+  templateUrl: './producto-edit.component.html',
+  styleUrls: ['./producto-edit.component.scss']
 })
-export class MedicamentoEditComponent implements OnInit {
+export class ProductoEditComponent implements OnInit{
 
   formEditMedicamento!: FormGroup;
   mensajeError = null;
@@ -17,7 +17,7 @@ export class MedicamentoEditComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<MedicamentoEditComponent>,
+    public dialogRef: MatDialogRef<ProductoEditComponent>,
     private medicamentoService: MedicamentoService,
     private toasterService: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -58,11 +58,11 @@ export class MedicamentoEditComponent implements OnInit {
         valorUnitario: newMedicamento.valorUnitario
       }
 
-      this.medicamentoService.update('api/medicamento/actualizar', dataMedicamentos).subscribe({
+      this.medicamentoService.update('api/inventario/actualizar', dataMedicamentos).subscribe({
         next: (medicamento) => {
           console.log(medicamento)
           this.dialogRef.close(medicamento);
-          this.toasterService.success('medicamento actualizado exitosamente')
+          this.toasterService.success('producto actualizado exitosamente')
         },
         error: (error) => {
           try {
@@ -81,5 +81,6 @@ export class MedicamentoEditComponent implements OnInit {
       );
     }
   }
+
 
 }

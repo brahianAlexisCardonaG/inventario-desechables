@@ -1,0 +1,19 @@
+p-table tr:hover {
+    background-color: #e5dede;
+    cursor: pointer;
+  }
+  
+  .width-min {
+    min-width: '60rem'
+  }
+
+  .barra-vertical {
+    width: 1px;
+    height: 60px;
+    background-color: gray;
+}
+
+  .label-color {
+    color: black;
+    font-weight: 600;
+  }

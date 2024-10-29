@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { MedicamentoAddComponent } from 'src/app/modules/medicamento/medicamento-add/medicamento-add.component';
-import { MedicamentoDeleteComponent } from 'src/app/modules/medicamento/medicamento-delete/medicamento-delete.component';
-import { MedicamentoEditComponent } from 'src/app/modules/medicamento/medicamento-edit/medicamento-edit.component';
+import { ProductoAddComponent } from 'src/app/modules/producto/producto-add/producto-add.component';
+import { ProductoDeleteComponent } from 'src/app/modules/producto/producto-delete/producto-delete.component';
+import { ProductoEditComponent } from 'src/app/modules/producto/producto-edit/producto-edit.component';
 import { VentaMedicamentoComponent } from 'src/app/modules/venta/venta-medicamento/venta-medicamento.component';
 
 @Injectable({
@@ -20,15 +20,15 @@ export class DialogService {
   }
 
   guardarMedicamentoDialog() {
-    let dialogRef: MatDialogRef<MedicamentoAddComponent>;
-    dialogRef = this.matDialog.open(MedicamentoAddComponent, this.defaultOptions);
+    let dialogRef: MatDialogRef<ProductoAddComponent>;
+    dialogRef = this.matDialog.open(ProductoAddComponent, this.defaultOptions);
     return dialogRef.afterClosed();
   }
 
   eliminarMedicamentoDialog(data: any) {
-    let dialogRef: MatDialogRef<MedicamentoDeleteComponent>;
+    let dialogRef: MatDialogRef<ProductoDeleteComponent>;
     dialogRef = this.matDialog.open(
-      MedicamentoDeleteComponent,
+      ProductoDeleteComponent,
       this.assignOptions({
         data: { data }
       })
@@ -37,9 +37,9 @@ export class DialogService {
   }
 
   editarMedicamentoDialog(data: any) {
-    let dialogRef: MatDialogRef<MedicamentoEditComponent>;
+    let dialogRef: MatDialogRef<ProductoEditComponent>;
     dialogRef = this.matDialog.open(
-      MedicamentoEditComponent,
+      ProductoEditComponent,
       this.assignOptions({
         data: { data }
       })

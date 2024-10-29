@@ -5,18 +5,18 @@ import { ToastrService } from 'ngx-toastr';
 import { MedicamentoService } from 'src/app/core/services/medicamento.service';
 
 @Component({
-  selector: 'app-medicamento-add',
-  templateUrl: './medicamento-add.component.html',
-  styleUrls: ['./medicamento-add.component.scss']
+  selector: 'app-producto-add',
+  templateUrl: './producto-add.component.html',
+  styleUrls: ['./producto-add.component.scss']
 })
+export class ProductoAddComponent {
 
-export class MedicamentoAddComponent implements OnInit {
   formAddMedicamento!: FormGroup;
   mensajeError = null;
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<MedicamentoAddComponent>,
+    public dialogRef: MatDialogRef<ProductoAddComponent>,
     private medicamentoService: MedicamentoService,
     private toasterService: ToastrService
   ) {
@@ -24,6 +24,7 @@ export class MedicamentoAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.formAddMedicamento = this.formBuilder.group({
+      codigoProducto:['', [Validators.required]],
       nombre: ['', [Validators.required]],
       laboratorioFabrica: ['', [Validators.required]],
       fechaFabricacion: ['', [Validators.required]],
@@ -44,19 +45,15 @@ export class MedicamentoAddComponent implements OnInit {
         {},
         this.formAddMedicamento.value
       );
-      this.medicamentoService.save('api/medicamento/crear', newMedicamento).subscribe({
+      this.medicamentoService.save('api/inventario/crear', newMedicamento).subscribe({
         next: (medicamento) => {
           this.dialogRef.close(medicamento);
-          this.toasterService.success('medicamento guardado exitosamente')
+          this.toasterService.success('producto guardado exitosamente')
         },
         error: (error) => {
-          try {
-            for (let field of error) {
-              this.toasterService.error(field.message, 'Error');
-            }
-          } catch (e) {
-            this.mensajeError = error.message;
-          }
+          this.toasterService.error(
+            error.error
+          );
         },
       });
     } else {
